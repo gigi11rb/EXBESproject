@@ -4,4 +4,5 @@ Flask_SQLAlchemy
 Flask_Login
 python-dotenv
 huggingface-hub
+Pillow
 gunicorn
