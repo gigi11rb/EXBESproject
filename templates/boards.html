@@ -1,0 +1,61 @@
+{% extends "base.html" %}
+
+
+{% block title %}Snowboards{% endblock %}
+
+
+{% block content %}
+
+<h1 class="text-center" style="font-weight:1000; color:black; padding-top:30px;">Snowboarding Boards</h1>
+<div class="row g-0">
+    
+    <div class="col-md-2" style="margin-top:300px; padding-left:30px;">
+       <button class="btn btn-light mb-2 w-100" 
+        type="button"
+        data-bs-toggle="collapse"
+        data-bs-target="#filterBar">Filter By Price</button>
+        <div class="collapse" id="filterBar">
+            <form method="post">
+                
+                {{ form.hidden_tag() }}
+                <div class="row g-2">
+                    <div class="col-6">
+                        {{ form.min(class="form-control", placeholder=form.min.label.text) }}
+                    </div>
+                    <div class="col-6">
+                        {{ form.max(class="form-control", placeholder=form.max.label.text) }}
+                    </div>
+                </div>
+                {{ form.submit(class="btn btn-dark w-100") }}
+            </form>
+        </div>
+    </div>
+
+    <div class="col-md-10" style="padding-left:50px;">
+        <div class="row g-0 justify-content-start mt-3">
+            {% for product in products %}
+                <div class="col-6 col-md-3 mb-4" style="padding-top:50px;">
+                    <div class="h-100" style="width:15rem; height: 100%;">
+                        <a href="/snowboarding/boards/{{product.id}}">
+                            <img class="card-img-top link" src="/static/snowboarding/boards/{{product['img'] }}">
+                        </a>
+                        <div class="card-body d-flex flex-column justify-content-between" style="padding-top:20px ;">
+                            {% if current_user.roles == "Admin" %}
+                                <form method="post" action="/admin/delete-product/snowboarding/boards/{{ product.id }}">
+                                    <button type="submit" class="btn btn-sm btn-danger">
+                                        ✕
+                                    </button>
+                                </form>
+                            {% endif %}
+                            <h5 class="card-text fw-bold">{{ product['description'] }}</h5>
+                            <h5 class="card-text fw-light" style="font-size:20px;">{{ product['price'] }}$</h5>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}

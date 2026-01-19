@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>{% block title %}{% endblock %}</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" >
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body style="background-color: rgb(241, 241, 241);">
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-black position-relative" >
+    <div class="container">
+        <a class="navbar-brand fw-bold fs-2" style="color:greenyellow" href="/">EXBES</a>
+
+        <a class="navbar-brand" href="https://tbcbank.ge/ka/tbc-education">
+          <img src="/static/tbc-logo.png" style="width:40px;"></img>
+        </a>
+
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse align-items-center" id="navbarNav">
+            <ul class="navbar-nav mx-auto" >
+                
+
+                <li class="nav-item dropdown mega-wrapper">
+                    <a class="nav-link fw-bold" href="#">
+                        Snowboarding
+                    </a>
+                    <div class="dropdown-menu mega-menu bg-black text-light border-0 rounded-0">
+                        <div class="container py-4">
+                        <div class="row">
+
+                            <div class="col-md-3" style="font-size: 20px;">
+                                <a class="dropdown-item fw-bold" href="/boards">Snowboards</a>
+                                <a class="dropdown-item fw-bold" href="/bindings">Bindings</a>
+                            </div>
+                            <div class="col-md-3" style="font-size: 20px;">
+                                <a class="dropdown-item fw-bold" href="/boots">Boots</a>
+                                <a class="dropdown-item fw-bold" href="/goggles">Goggles</a>
+                            </div>
+                            <div class="col-md-3" style="font-size: 20px;">
+                                <a class="dropdown-item fw-bold" href="/helmets">Helmets</a>
+                            </div>
+                        </div>
+                        </div>
+                    </div>
+                </li>
+                
+                <li class="nav-item dropdown mega-wrapper">
+                    <a class="nav-link fw-bold" href="#">
+                        Skiing
+                    </a>
+                    <div class="dropdown-menu mega-menu bg-black text-light border-0 rounded-0">
+                        <div class="container py-4">
+                        <div class="row">
+                            <div class="col-md-3" style="font-size: 20px;">
+                                <a class="dropdown-item fw-bold" href="/skies">Skis</a>
+                                <a class="dropdown-item fw-bold" href="/skiboots">Boots</a>
+                                
+                            </div>
+                            <div class="col-md-3" style="font-size: 20px;">
+                                <a class="dropdown-item fw-bold" href="/helmets">Helmets</a>
+                                <a class="dropdown-item fw-bold" href="/poles">Ski Pole's</a>
+                            </div>
+                            <div class="col-md-3" style="font-size: 20px;">
+                                <a class="dropdown-item fw-bold"  href="/goggles">Goggles</a>
+                            </div>
+                        </div>
+                        </div>
+                    </div>
+                </li>
+
+                <li class="nav-item fw-bold"><a class="nav-link" href="/goggles">Goggle's</a></li>
+                <li class="nav-item fw-bold"><a class="nav-link" href="/helmets">Helmet's</a></li>
+                <li class="nav-item fw-bold"><a class="nav-link" href="/masks">Anon Mask's</a></li>
+                {% if current_user.is_authenticated %}
+                    <li class="nav-item fw-bold"><a class="nav-link" href="/generate_image">Create Your Own</a></li>
+                {% endif %} 
+            </ul>
+        </div>
+        {% if current_user.is_authenticated %}
+            <a href="/cart"> 
+                <img class="nav-link" src="/static/cart.png" width="40" height="33" style="margin-right:15px;"></img>
+            </a>
+        {% endif %}    
+        <li class="nav-item dropdown">
+        {% if current_user.is_authenticated %} 
+           
+        <h1 class="nav-link fw-bold" style="color:aliceblue; font-size:25px;"> 
+            {{current_user.username[0].upper()}} </h1>
+            <ul class="dropdown-menu text-center dropdown-menu-custom bg-black" style="left:-30px;">
+                <li><a class="dropdown-item" href="/logout">Logout</a></li>
+            </ul>
+        {% else %}    
+        <img class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+            aria-expanded="false" src="/static/account.png" width="45" height="45"></img>
+            <ul class="dropdown-menu text-center dropdown-menu-custom bg-black" style="left:-20px;">
+                <li><a class="dropdown-item" href="/signin">Sign In</a></li>
+                <li><a class="dropdown-item" href="/login">Login</a></li>
+            </ul>
+        {% endif%}    
+        </li>
+    </div>
+</nav>
+
+
+{% block content %}{% endblock %}
+
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>

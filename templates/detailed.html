@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+
+{% block title %} {{ product['description'] }} {% endblock %}
+
+{% block content %}
+<div class="container mt-4 g-0">
+  <div class="row align-items-center">
+    <div class="col-md-6">
+        <h4 style="font-size: 40px;">{{ product['description'] }}</h4>
+        <h3 class="fw-light">PRICE: {{ product['price'] }} $</h3>
+        {% if current_user.is_authenticated %}
+        <form method="post" action="/add-to-cart">
+            <input type="hidden" name="product_id" value="{{ product.id }}">
+            <input type="hidden" name="img" value="{% if model2 %}{{ model2 }}/{% endif %}{{ model }}/{{product['img']}}">
+            <input type="hidden" name="price" value="{{ product.price }}">
+            <input type="hidden" name="description" value="{{ product.description }}">
+            <input type="hidden" name="model" value="{{ model }}">
+            <input type="hidden" name="model2" value="{{ model2 if model2 else '' }}">
+            <button type="submit" class="btn btn-dark w-100 fw-bold">
+                Add to cart
+            </button>
+        </form>
+        {% endif %}
+    </div>
+    <div class="col-md-6 text-end">
+      <img src="/static/{% if model2 %}{{ model2 }}/{% endif %}{{ model }}/{{product['img']}}" style="width:80%;">
+    </div>
+    <h4 class="fw-light" style="font-size: 20px;">{{ product['stats'] }}</h4>
+  </div>
+</div>
+
+{% endblock %}
+
+
+
+
+

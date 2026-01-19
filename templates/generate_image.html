@@ -1,0 +1,68 @@
+{% extends "base.html" %}
+
+{% block title %}Create Your Own Snowboard{% endblock %}
+
+{% block content %}
+    <div class="ai-container">
+        <h1 class="text-center fw-bold" style="font-size:55px;">You Can Now Create Your Custom Boards</h1>
+        <form method="post" class="ai-form">
+            <input type="text" name="prompt" placeholder="Create Your Own Snowboard Or Skis" required style="width:300px;">
+            <button type="submit">Create</button>
+        </form>
+        {% if image_base64 %}
+            <img src="data:image/png;base64,{{ image_base64 }}" alt="Generated Image" style="max-width:500px;">
+            <h1 class="text-center fw-bold" style="top:20px; bottom:30px;">WOULD YOU LIKE TO BUY THES PRODUCT OF YOUR LIKENESS</h1>
+
+            <h1 class="text-center fw-bold">Choose The Material That You Want To Use For Your Snowboard</h1>
+
+            <div class="option-group">
+                <h3>Material</h3>
+                <label>
+                    <input type="radio" name="material" value="carbon fiber" required>
+                    Carbon Fiber +100$
+                </label>
+                <label>
+                    <input type="radio" name="material" value="wood core">
+                    Wood Core
+                </label>
+                <label>
+                    <input type="radio" name="material" value="fiberglass">
+                    Fiberglass 
+                </label>
+                <label>
+                    <input type="radio" name="material" value="bamboo core">
+                    Bamboo Core +70$
+                </label>
+            </div>
+
+            <h1 class="text-center fw-bold">Choose The Style That You Want Your Snowboard To Be</h1>
+            <div class="option-group">
+                <h3>Style</h3>
+                <label>
+                    <input type="radio" name="style" value="powder" required>
+                    Powder 
+                </label>
+                <label>
+                    <input type="radio" name="style" value="park">
+                    Park +30$
+                </label>
+                <label>
+                    <input type="radio" name="style" value="freestyle">
+                    Freestyle
+                </label>
+                <label>
+                    <input type="radio" name="style" value="all-mountain">
+                    All-Mountain +100$
+                </label>
+                <label>
+                    <input type="radio" name="style" value="freeride">
+                    Freeride +100$
+                </label>
+            </div>
+            <button type="submit" class="btn btn-dark w-70 fw-bold">BUY IT</button>
+        {% endif %}
+    </div>
+
+
+
+{% endblock %}
