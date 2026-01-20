@@ -6,4 +6,5 @@ python-dotenv
 huggingface-hub
 Pillow
 email_validator
+WTForms
 gunicorn
