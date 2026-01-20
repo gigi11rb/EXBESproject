@@ -5,4 +5,5 @@ Flask_Login
 python-dotenv
 huggingface-hub
 Pillow
+email_validator
 gunicorn
