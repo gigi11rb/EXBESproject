@@ -7,5 +7,4 @@ huggingface-hub
 Pillow
 email_validator
 WTForms
-io
 gunicorn
